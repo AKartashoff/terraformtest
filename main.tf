@@ -1,3 +1,4 @@
+#Added comment for the first automated CI/CD run
 terraform {
   backend "azurerm" {
     resource_group_name   = "gmhtest-infra"
