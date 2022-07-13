@@ -19,9 +19,6 @@ provider "azurerm" {
       key_vault {
       purge_soft_delete_on_destroy = true
     }
-      virtual_machine {
-        delete_os_disk_on_deletion = true
-      }
   }
 }
 data "azurerm_client_config" "current" {}
@@ -74,6 +71,8 @@ resource "azurerm_virtual_machine" "gmhtestvm01" {
   resource_group_name   = azurerm_resource_group.rg.name
   network_interface_ids = [azurerm_network_interface.vmnic.id]
   vm_size               = "Standard_B2s"
+  delete_os_disk_on_termination = true
+  delete_data_disks_on_termination = true
   storage_image_reference {
     publisher = "MicrosoftWindowsServer"
     offer     = "WindowsServer"
